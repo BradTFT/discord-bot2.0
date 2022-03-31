@@ -1,20 +1,42 @@
 #run bot with this syntax
 # python3 bot.py
+#or use code runner ext command (ctrl, alt, n)
 
+#run venv (virtual environment): source .venv/bin/activate
+
+#token hiding libraries
+import os
+from dotenv import load_dotenv
+
+#import libraries
+from discord.ext import commands
 import discord
+
+
+
 
 client = discord.Client()
 
+#sets prefix
+bot = commands.Bot(command_prefix = "!")
+
+#shows bot online
 @client.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('bot online')
 
+#makes bot status
 @client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
+async def on_ready():
+    await bot.change_presence(activity = discord.Game('being useless'))
 
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
 
-client.run('OTU3Njg4OTQyMDU0OTk4MDQ4.YkCbVA.lEweRlEyNq2APbaLmvDhAs3Vhq8')
+@client.command()
+async def ping():
+    await client.say('Pong!')
+
+
+
+
+#bot token must be last line 
+client.run('token')
