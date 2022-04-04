@@ -7,3 +7,11 @@ this README will serve as a daily log for me and to see my progress. i will also
 4/1/22: decided to do both py and js. placed them in seperate folders. and token.json should be easier to understand. i figured out dotenv so the repo is now open. decided to fuck js its too hard lmao. i think py will be easier i just gotta get the hang of it. 
 
 4.1.22 commit message: just commiting to show progress this commit is meaningless bc nothing besides figuring out dotenv worked lol. (brads fucking dumb)
+
+
+4.3.22: 
+i sorta figured out intents and imma make some commands today
+decided to remove all non-working commands and added some quality-of-life changes to my extensions in vscode. i will list them in extenstions.txt. still cant figure out why my commands arent working . ill figure it out later. no commit today for no changes. if i can figure out a way to fix it there will be a commit today. still no luck on figureing out how to fix this bug. just gonna commit it
+
+
+4.3.22 commit message: removed non-working lines (events, commands, ect), added extensions.txt and load.txt, added to .gitignore, added extra comments. other commands still not working. bug fix in progress

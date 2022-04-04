@@ -3,24 +3,29 @@
 #run venv: source .venv/bin/activate
 #create venv if ^^^ doesnt work: python3.9 -m venv .venv
 
-
+#loads dotenv and os (dependant on each other)
 from dotenv import load_dotenv
 from os import getenv
+#runs dotenv
 load_dotenv()
+#import discord lib
 import discord
+#imports commands from discord
 from discord.ext import commands
+#gets token from .env using dotenv
 token = getenv("token")
-
+#sets client as connected to discord
 client = discord.Client()
 
-#sets prefix
-client = commands.Bot(command_prefix = "!")
+#sets prefix and loads intents
+client = commands.Bot(command_prefix = "!", intents = discord.Intents.default())
 
 
 #on ready message log in terminal
 @client.event
 async def on_ready():
-    client.message('i am online')
+    print('bot online')    
+
 
 #hello command which btw is the only one that works rn
 @client.event
@@ -31,29 +36,10 @@ async def on_message(message):
     if message.content.startswith('!hello'):
         await message.channel.send('Hello!')
 
-
-
-#i made this so it sucks. dm command that doesnt work
-@client.event 
-async def dm(message, ctx):
-    if message.author == client.user:
-        return
-    
-    if message.content.startswith('!dm'):
-        me = await client.get_user_info('')
-        await client.send_message(me, ctx)
-
-
-#pasted command for ping that doesnt work
-@client.command
-async def ping(ctx: commands.Context):
-    await ctx.send(f"Pong! {round(client.latency * 1000)}ms")
-
-
-#trying to make an "on join dm" message. havent tested yet imma ask someone 
-@client.event
-async def on_member_join(member):
-    await member.send('welcome to the server')
+#ping ms command
+@client.command()
+async def ping(ctx):
+    await ctx.channel.send(f'Pong! {round(client.latency * 1000)}ms')
 
 
 

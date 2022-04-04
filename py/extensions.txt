@@ -1,0 +1,12 @@
+list of the extensions i use (specifically for this project. 
+there are others and themes but im not logging those)
+
+
+bracket pair colorizor
+code spell checker
+discord tools
+discord.py code snippets
+dotenv
+(most important git extensions that im not going to list bc their all the same for the most part)
+vscode icons
+better comments

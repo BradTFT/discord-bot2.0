@@ -1,0 +1,7 @@
+python3.9 -m venv .venv
+source .venv/bin/activate
+pip install python-dotenv
+python3 -m pip install -U discord.py
+
+
+run all for needed venv packages ect.
