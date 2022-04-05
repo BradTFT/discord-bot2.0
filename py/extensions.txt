@@ -2,7 +2,7 @@ list of the extensions i use (specifically for this project.
 there are others and themes but im not logging those)
 
 
-bracket pair colorizor
+bracket pair colorizor (includes parenthasis btw)
 code spell checker
 discord tools
 discord.py code snippets
