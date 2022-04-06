@@ -27,3 +27,11 @@ ok so i think i fixed the command thing. i posted about it on the discussions in
 added "list" command, added embed to 'list' command, created (not tested yet) onjoin message, created an "unknown command" event, created help command, fixed commands not running, added brief description to commands. 
 **4.4.22 issues:**
 dm commands not working and i am yet to figure out how to use the help command.
+
+
+**4.5.22**
+fixed help command issues. just doing embeds for it now. adding a purge command(in progress), added meme commands jsut for trolls their kind of meaningless and i intend to remove them. nothing much happened today so hopefully tomorrow is more successful
+
+
+**4.5.22 commit message:**
+Removed DM_LIST command, removed custom help command for maintenance (placed in storage.txt), added PURGE command(doesnt currently work, placed in storage; not in bot.py file),  added meme commands, re-added COMMAND NOT FOUND message, added commands to LIST command(not available rn), added to gitignore
