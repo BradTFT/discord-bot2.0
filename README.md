@@ -35,3 +35,10 @@ fixed help command issues. just doing embeds for it now. adding a purge command(
 
 **4.5.22 commit message:**
 Removed DM_LIST command, removed custom help command for maintenance (placed in storage.txt), added PURGE command(doesnt currently work, placed in storage; not in bot.py file),  added meme commands, re-added COMMAND NOT FOUND message, added commands to LIST command(not available rn), added to gitignore
+
+
+**4.6.22:**
+decided to add admin commands to make the bot more useful. adding "admin" arg to list as well so admins can see their commands but im going to make it dm them the list. planning on adding a self-role system once i figure out how to do that. on_join and on_member_join still doesnt work and needs to be fixed. otherwise today was sucessful. seriously thinking about new commands to add beacuse im running out of ideas. only other solution would be to do voice commands, those should entertain me for a while. 
+
+**4.6.22 commit message:**
+added admin commands(kick, ban, unban), added ADMINCMD command; dms user list of admin commands, removed LIST command, learned some new stuff, added a variable to make coloring embeds easier

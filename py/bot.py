@@ -18,16 +18,16 @@ token = getenv("token")
 client = discord.Client()
 #sets prefix and loads intents
 client = commands.Bot(command_prefix = "!", intents = discord.Intents.default(), help_command=None)
-
+embedcolor = 0x00d5ff
 
 #on ready message log in terminal
 @client.event
 async def on_ready():
-    print('bot online')    
+    print('bot online')   
 
 
 
-#hello command which btw is the only one that works rn
+#hello command
 @client.event
 async def on_message(message):
     if message.author == client.user:
@@ -47,17 +47,6 @@ async def on_message(message):
 async def ping(ctx):
     await ctx.channel.send(f'Pong! {round(client.latency * 1000)}ms')
 
-#list command
-# TODO once commands are added add to list
-# * added embed status     
-@client.command(brief="shows all commands")
-async def list(ctx):
-    embed=discord.Embed(title="Command List", color=0x00d5ff)
-    embed.add_field(name="ping", value="Pings bot; shows latency", inline=False)
-    embed.add_field(name="list", value="Lists available commands", inline=False)
-    embed.add_field(name="purge", value="Deletes commands (!purge <messagetopurge>", inline=False)
-    embed.add_field(name="dm_list", value="DMs user list of commands (helps keep channels clear)", inline=False)
-    await ctx.send(embed=embed)
 
 
 
@@ -73,7 +62,49 @@ async def on_member_join(message):
 
 
 
+#!admin commands (kick ban ect)
+#ban command
+@client.command()
+@commands.has_role('Admin')
+async def ban(ctx, user: discord.Member, *, reason = None):
+    await user.ban()
+    ctx.send(f'{user} was banned for {reason}')
 
+
+#kick command
+@client.command()
+@commands.has_role('Admin')
+async def kick(ctx, user: discord.Member, *, reason = None):
+    await user.kick()
+    ctx.send(f'{user} has been kicked for {reason}')
+
+
+
+
+#unban command
+@client.command()
+@commands.has_role('Unban')
+async def unban(ctx, *, member_id: int):
+    await ctx.guild.unban(discord.Object(id=member_id))
+
+
+#admin function list
+@client.command()
+@commands.has_role('Admin')
+async def admincmd(ctx):
+    embed=discord.Embed(title="Admin Commands", description="***DO NOT LEAK***", color=embedcolor)
+    embed.add_field(name="!ban", value="bans user (!ban username#1111)", inline=False)
+    embed.add_field(name="!unban", value="special permissions needed for this command (!unban userid)", inline=True)
+    embed.add_field(name="!kick", value="kicks user (!kick username#1111)", inline=False)
+    await ctx.author.send(embed=embed)
+
+        
+
+#! end admin commands
+
+
+#! fun commands
+#TODO add fun commands
 
 #! meme commands ignore:::
 #demorolizor 2.0
@@ -124,5 +155,5 @@ async def on_ready():
 
 
 
-
+#last line (token using dotenv)
 client.run(token)
