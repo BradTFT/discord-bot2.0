@@ -1,0 +1,23 @@
+if your here you probably just ran a command that didnt work. here are the troubleshooting steps:
+
+#Reason One
+Check your client.command. make sure there are parenthasis after it. make sure there is an @ before it
+
+Should look like this:
+@client.command()
+
+
+#Reason Two
+Check for spelling errors
+
+
+#Reason Three 
+Check to make sure you have parameters
+
+
+#Reason Four
+Check to make sure you have "await" before your command
+
+
+#Reason Five
+Check to make sure you have a colon after your function is specified

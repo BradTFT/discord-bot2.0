@@ -53,10 +53,10 @@ async def ping(ctx):
 #onjoin mention in joins channel and dm welcome
 #! doesnt curretnly work
 @client.event
-async def on_member_join(message):
+async def on_member_join(ctx):
     user = client.get_user()
     channel = client.get_channel(960580449254649996)
-    await message.send('{member} has joined the server!')
+    await channel.send('{user} has joined the server!')
     await user.send('welcome to the server')
 
 
@@ -99,12 +99,56 @@ async def admincmd(ctx):
     await ctx.author.send(embed=embed)
 
         
+# TODO: FIX COMMAND
+@client.command()
+@commands.has_role('Admin')
+async def timeout(ctx):
+    await timeout()
+
+
 
 #! end admin commands
 
 
 #! fun commands
 #TODO add fun commands
+
+
+#dice roll 6 sided
+@client.command()
+async def roll6(ctx):
+    numbers6 = ['1', '2', '3', '4', '5', '6']
+    await ctx.send(random.choice(numbers6))
+
+#dice roll 38
+@client.command()
+async def roll38(ctx):
+    numbers38 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38']
+    await ctx.send(random.choice(numbers38))
+
+
+#coin toss
+@client.command()
+async def coinflip(ctx):
+    sides = ['Heads', 'Tails']
+    await ctx.send(random.choice(sides))
+
+#creator command
+@client.command()
+async def creator(ctx):
+    myid = 612985717609725972
+    await ctx.send(f'my creator is <@{myid}>, he created me with great power')
+    await ctx.send('please dont ping him constantly it will make him upset')
+
+#owner command:
+@client.command()
+async def serverowner(ctx):
+    id = 612985717609725972
+    await ctx.send(f'<@{id}> is the server owner')
+    await ctx.send('please dont ping him constantly it will make him upset')
+
+
+#! end of fun commands
 
 #! meme commands ignore:::
 #demorolizor 2.0
@@ -126,6 +170,7 @@ async def helppls(ctx):
     await ctx.send(embed=embed)
 
 
+#whois command
 @client.command()
 async def whois(ctx, *, args):
     await ctx.send('their a bitch and they get no bitches')
@@ -135,7 +180,6 @@ async def whois(ctx, *, args):
 #! end of meme commands
 
 #command not found error message
-# TODO add if client.user
 @client.event
 async def on_command_error(ctx, error):
     if ctx.author == client.user:
@@ -147,11 +191,25 @@ async def on_command_error(ctx, error):
         await ctx.send(embed=embed)
 
 
+#better help command
+@client.command()
+async def h(ctx, *, arg=None):
+    if arg == 'admin':
+        embed=discord.Embed(title="Admin Commands Request", description="run !admincmd for admin commands", color=embedcolor)
+        await ctx.author.send(embed=embed)
+    else:
+        embed=discord.Embed(title="Basic Commands", color=embedcolor)
+        embed.add_field(name="!ping", value="returns bot latency", inline=False)
+        embed.add_field(name="!hello", value="bot says hello back", inline=True)
+        embed.add_field(name="!dice6", value="rolls a 6 sided die", inline=False)
+        embed.add_field(name="!dice38 ", value="rolls a 38 sided die", inline=False)
+        embed.add_field(name="!coinflip", value="flips a coin", inline=True)
+        await ctx.send(embed=embed)
 
-#set status
+
 @client.event
 async def on_ready():
-    await client.change_presence(activity = discord.Game('being useless'))
+    await client.change_presence(activity = discord.Game('!h for help'))
 
 
 
