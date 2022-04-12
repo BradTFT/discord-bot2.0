@@ -19,11 +19,20 @@ client = discord.Client()
 #sets prefix and loads intents
 client = commands.Bot(command_prefix = "!", intents = discord.Intents.default(), help_command=None)
 embedcolor = 0x00d5ff
+import time
+import random
+
+
+
+
+#!start code
+
 
 #on ready message log in terminal
 @client.event
 async def on_ready():
-    print('bot online')   
+    print('bot online')  
+    await client.change_presence(activity = discord.Game('!h for help')) 
 
 
 
@@ -53,11 +62,8 @@ async def ping(ctx):
 #onjoin mention in joins channel and dm welcome
 #! doesnt curretnly work
 @client.event
-async def on_member_join(ctx):
-    user = client.get_user()
-    channel = client.get_channel(960580449254649996)
-    await channel.send('{user} has joined the server!')
-    await user.send('welcome to the server')
+async def on_member_join(member):
+    await member.send("Welcome!")
 
 
 
@@ -102,8 +108,8 @@ async def admincmd(ctx):
 # TODO: FIX COMMAND
 @client.command()
 @commands.has_role('Admin')
-async def timeout(ctx):
-    await timeout()
+async def timeout(ctx, member):
+    await member.timeout()
 
 
 
@@ -123,8 +129,7 @@ async def roll6(ctx):
 #dice roll 38
 @client.command()
 async def roll38(ctx):
-    numbers38 = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38']
-    await ctx.send(random.choice(numbers38))
+    await ctx.send(random.randrange(1, 38))
 
 
 #coin toss
@@ -138,6 +143,7 @@ async def coinflip(ctx):
 async def creator(ctx):
     myid = 612985717609725972
     await ctx.send(f'my creator is <@{myid}>, he created me with great power')
+    time.sleep(1)
     await ctx.send('please dont ping him constantly it will make him upset')
 
 #owner command:
@@ -145,6 +151,7 @@ async def creator(ctx):
 async def serverowner(ctx):
     id = 612985717609725972
     await ctx.send(f'<@{id}> is the server owner')
+    time.sleep(1)
     await ctx.send('please dont ping him constantly it will make him upset')
 
 
@@ -191,12 +198,28 @@ async def on_command_error(ctx, error):
         await ctx.send(embed=embed)
 
 
+#!convert c to f here
+@client.command()
+async def convertc(ctx, *, arg):
+    #take arg temperature and convert it
+    output = int(arg) * 2 + 30
+    await ctx.send(f"The temperature in Fahrenheit is {output} degrees")
+    time.sleep(1)
+    await ctx.send('by the way this is not entirely accurate because of the use of the simplistic formula')
+
+
 #better help command
 @client.command()
 async def h(ctx, *, arg=None):
     if arg == 'admin':
         embed=discord.Embed(title="Admin Commands Request", description="run !admincmd for admin commands", color=embedcolor)
         await ctx.author.send(embed=embed)
+    elif arg == 'weather':
+        embed=discord.Embed(title="Weather Help", description="Run: !weather", color=embedcolor)
+        embed.add_field(name="city not found:", value="check spelling", inline=False)
+        embed.add_field(name="wrong city:", value="add a comma and the state abbreviation after the city", inline=True)
+        embed.add_field(name="wrong temp unit:", value="run !convertc temperature", inline=False)
+        await ctx.send(embed=embed)
     else:
         embed=discord.Embed(title="Basic Commands", color=embedcolor)
         embed.add_field(name="!ping", value="returns bot latency", inline=False)
@@ -207,9 +230,7 @@ async def h(ctx, *, arg=None):
         await ctx.send(embed=embed)
 
 
-@client.event
-async def on_ready():
-    await client.change_presence(activity = discord.Game('!h for help'))
+
 
 
 

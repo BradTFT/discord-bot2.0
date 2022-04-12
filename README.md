@@ -50,4 +50,11 @@ i have nothing to log so just the commit message
 
 
 **4.6.22 commit message:**
-added fun commands(dice roll, coin flip), made README look nicer, added CREATOR and OWNER commands, added a new file(issues checklist.txt), 
+added fun commands(dice roll, coin flip), made README look nicer, added CREATOR and OWNER commands, added a new file(issues checklist.txt)
+
+
+**4.11.22:**
+Took a break for a while to think of some new ideas. found this one: make a weather command, make daily discord life easier. so i need to identify what i want to make my discord life easier. but the weather should be fairly self explantatory. im wathcing a video about intergrating APIs into DPY. still need more ideas bc im starting to get bored. i need to figure out how to intergrate the weather api into !weather. ill figure it out tmr.
+
+**4.11.22 commit message:**
+fixed on_ready() bug(see line 35), added WEATHER to help command, added sleep delays for certain commands(see time.sleep()), imported libs, added a celsius to fahrenheit conversion, added (currently) usless files(weather-test.py, weather api folder)
