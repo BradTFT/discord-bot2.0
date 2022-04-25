@@ -58,3 +58,8 @@ Took a break for a while to think of some new ideas. found this one: make a weat
 
 **4.11.22 commit message:**
 fixed on_ready() bug(see line 35), added WEATHER to help command, added sleep delays for certain commands(see time.sleep()), imported libs, added a celsius to fahrenheit conversion, added (currently) usless files(weather-test.py, weather api folder)
+
+
+
+**4.12.22:**
+im going to try to take the function from the weather-api-test doc and move it into my !weather command.

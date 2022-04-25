@@ -102,7 +102,7 @@ async def admincmd(ctx):
     embed.add_field(name="!ban", value="bans user (!ban username#1111)", inline=False)
     embed.add_field(name="!unban", value="special permissions needed for this command (!unban userid)", inline=True)
     embed.add_field(name="!kick", value="kicks user (!kick username#1111)", inline=False)
-    await ctx.author.send(embed=embed)
+    await ctx.author.send(embed=embed)                      
 
         
 # TODO: FIX COMMAND
@@ -196,6 +196,9 @@ async def on_command_error(ctx, error):
         embed=discord.Embed(color=0x00d5ff)
         embed.add_field(name="Error", value="Unknown Command", inline=False)
         await ctx.send(embed=embed)
+
+
+
 
 
 #!convert c to f here
